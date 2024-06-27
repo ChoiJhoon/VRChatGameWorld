@@ -1,5 +1,4 @@
-﻿
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using UnityEngine.AI;
 using VRC.SDKBase;
@@ -7,9 +6,14 @@ using VRC.Udon;
 
 public class MonsterMovement : UdonSharpBehaviour
 {
-    public GameObject mobPrefab;
-    private float mobSpeed = 1.0f;
-    private Vector3 targetPosition;
+    public GameObject mobPrefab; // 몬스터 프리팹
+    private float mobSpeed = 1.0f; // 몬스터 이동 속도
+    private Vector3 targetPosition; // 타겟 위치
+
+    public int mobsLifeCount = 100; // 몬스터의 초기 생명 수
+    public float attackRange = 2.0f; // 공격 범위
+    public LayerMask targetLayer; // 공격 대상 레이어
+    public int attackDamage = 10; // 공격 데미지
 
     void Start()
     {
@@ -19,8 +23,8 @@ public class MonsterMovement : UdonSharpBehaviour
 
     private void FixedUpdate()
     {
-        PlayerFind();
-        MoveTowardsPlayer();
+        PlayerFind(); // 플레이어 찾기
+        MoveTowardsPlayer(); // 플레이어를 향해 이동
     }
 
     private void PlayerFind()
@@ -38,8 +42,8 @@ public class MonsterMovement : UdonSharpBehaviour
 
     private void MoveTowardsPlayer()
     {
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        transform.position += direction * mobSpeed * Time.deltaTime;
+        Vector3 direction = (targetPosition - transform.position).normalized; // 플레이어 방향 계산
+        transform.position += direction * mobSpeed * Time.deltaTime; // 플레이어를 향해 이동
 
         // 몬스터의 회전도 플레이어를 향하도록 설정
         if (direction != Vector3.zero)
@@ -47,7 +51,4 @@ public class MonsterMovement : UdonSharpBehaviour
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
-
-    //몬스터 Life 시스템
-    //무기 시스템 먼저 ^^
 }
