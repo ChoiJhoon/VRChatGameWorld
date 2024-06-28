@@ -23,7 +23,6 @@ public class MonsterGenSystem : UdonSharpBehaviour
     void Update()
     {
         mobGen();
-        FindPlayerPos();
     }
 
     private void Spawn(Vector3 spawnPosition)
@@ -48,21 +47,6 @@ public class MonsterGenSystem : UdonSharpBehaviour
             Debug.Log("몹 생성");
         }
     }
-
-    public void FindPlayerPos()
-    {
-        int playerCount = VRCPlayerApi.GetPlayerCount(); // 현재 플레이어 수 가져오기
-        VRCPlayerApi[] players = new VRCPlayerApi[playerCount]; // 플레이어 배열 생성
-        VRCPlayerApi.GetPlayers(players);
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            VRCPlayerApi player = players[i];
-            Vector3 playerPosition = player.GetPosition(); // 플레이어 위치 가져오기
-            Debug.Log($"Player {i} 위치: {playerPosition}");
-        }
-    }
-
     private Vector3[] GenerateSpawnPoints()
     {
         int numPoints = 10; // 생성할 스폰 포인트 수

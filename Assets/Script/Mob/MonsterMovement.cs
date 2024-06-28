@@ -11,9 +11,6 @@ public class MonsterMovement : UdonSharpBehaviour
     private Vector3 targetPosition; // 타겟 위치
 
     public int mobsLifeCount = 100; // 몬스터의 초기 생명 수
-    public float attackRange = 2.0f; // 공격 범위
-    public LayerMask targetLayer; // 공격 대상 레이어
-    public int attackDamage = 10; // 공격 데미지
 
     void Start()
     {
@@ -50,5 +47,23 @@ public class MonsterMovement : UdonSharpBehaviour
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        mobsLifeCount -= damage; // 데미지 만큼 생명 수 감소
+
+        // 생명 수가 0 이하가 되면 몬스터를 제거
+        if (mobsLifeCount <= 0)
+        {
+            Die();
+        }
+    }
+
+    // 몬스터가 제거되는 메서드
+    private void Die()
+    {
+        Debug.Log($"{gameObject.name}이(가) 사망했습니다.");
+        Destroy(gameObject); // 몬스터 오브젝트 제거
     }
 }
