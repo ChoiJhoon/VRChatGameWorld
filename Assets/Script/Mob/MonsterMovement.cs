@@ -6,7 +6,6 @@ using VRC.Udon;
 
 public class MonsterMovement : UdonSharpBehaviour
 {
-    public GameObject mobPrefab; // 몬스터 프리팹
     private float mobSpeed = 1.0f; // 몬스터 이동 속도
     private Vector3 targetPosition; // 타겟 위치
 

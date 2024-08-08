@@ -348,7 +348,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 389225889}
-  mobPrefab: {fileID: 389225884}
   mobsLifeCount: 100
 --- !u!114 &853484962
 MonoBehaviour:
